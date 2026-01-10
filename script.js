@@ -58,3 +58,23 @@ btnScrollTo.addEventListener('click', function (e) {
   //newer
   section1.scrollIntoView({ behavior: 'smooth' });
 });
+
+// document.querySelectorAll('.nav__link').forEach(function (e) {
+//   e.addEventListener('click', function (e) {
+//     e.preventDefault();
+
+//     const id = this.getAttribute('href');
+//     const section = document.querySelector(id);
+//     section.scrollIntoView({ behavior: 'smooth' });
+//   });
+// });
+
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  e.preventDefault();
+
+  if (e.target.classList.contains('nav__link')) {
+    const id = e.target.getAttribute('href');
+    const section = document.querySelector(id);
+    section.scrollIntoView({ behavior: 'smooth' });
+  }
+});
