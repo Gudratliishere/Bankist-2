@@ -89,7 +89,7 @@ tabsContainer.addEventListener('click', function (e) {
     .classList.add('operations__content--active');
 });
 
-const handleHover = function (e, opacity) {
+const handleHover = function (e) {
   if (e.target.classList.contains('nav__link')) {
     const link = e.target;
     const siblings = link.closest('.nav').querySelectorAll('.nav__link');
@@ -97,13 +97,22 @@ const handleHover = function (e, opacity) {
 
     siblings.forEach(s => {
       if (s !== link) {
-        s.style.opacity = opacity;
+        s.style.opacity = this;
       }
     });
 
-    logo.style.opacity = opacity;
+    logo.style.opacity = this;
   }
 };
 
 nav.addEventListener('mouseover', handleHover.bind(0.5));
 nav.addEventListener('mouseout', handleHover.bind(1));
+
+const initialCoords = section1.getBoundingClientRect();
+window.addEventListener('scroll', function () {
+  if (this.window.scrollY > initialCoords.top) {
+    nav.classList.add('sticky');
+  } else {
+    nav.classList.remove('sticky');
+  }
+});
