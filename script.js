@@ -59,16 +59,6 @@ btnScrollTo.addEventListener('click', function (e) {
   section1.scrollIntoView({ behavior: 'smooth' });
 });
 
-// document.querySelectorAll('.nav__link').forEach(function (e) {
-//   e.addEventListener('click', function (e) {
-//     e.preventDefault();
-
-//     const id = this.getAttribute('href');
-//     const section = document.querySelector(id);
-//     section.scrollIntoView({ behavior: 'smooth' });
-//   });
-// });
-
 document.querySelector('.nav__links').addEventListener('click', function (e) {
   e.preventDefault();
 
@@ -77,4 +67,22 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
     const section = document.querySelector(id);
     section.scrollIntoView({ behavior: 'smooth' });
   }
+});
+
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
+
+tabsContainer.addEventListener('click', function (e) {
+  const clicked = e.target.closest('.operations__tab');
+
+  if (!clicked) return;
+
+  tabs.forEach(t => t.classList.remove('operations__tab--active'));
+  clicked.classList.add('operations__tab--active');
+
+  tabsContent.forEach(t => t.classList.remove('operations__content--active'));
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add('operations__content--active');
 });
